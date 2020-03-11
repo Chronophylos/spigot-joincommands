@@ -1,0 +1,4 @@
+name: JoinCommands
+version: ${project.version}
+main: rlnt.joincommands.JoinCommands
+api-version: 1.13
