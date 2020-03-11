@@ -18,7 +18,7 @@ public final class Gui implements InventoryHolder, Listener {
     private static final ItemStack CLOSE_ITEM = new ItemStack(Material.BEEF);
     private static final ItemStack NONE_ITEM = new ItemStack(Material.AIR);
     private static final ItemStack ADD_ITEM = new ItemStack(Material.ALLIUM);
-    private static final ItemStack REARRANGE_ITEM = new ItemStack(Material.ITEM_FRAME);
+    private static final ItemStack SORT_ITEM = new ItemStack(Material.ITEM_FRAME);
     private static final char[] CONTENT_TEMPLATE = {
         'b','b','b','b','b','b','b','b','c',
         'n','n','n','n','n','n','n','n','n',
@@ -75,7 +75,7 @@ public final class Gui implements InventoryHolder, Listener {
                     content.push(ADD_ITEM);
                     continue;
                 case 's':
-                    content.push(REARRANGE_ITEM);
+                    content.push(SORT_ITEM);
                     continue;
                 default:
                     logger.severe("Unkown template item " + c);
