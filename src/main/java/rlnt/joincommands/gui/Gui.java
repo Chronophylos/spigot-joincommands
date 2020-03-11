@@ -19,6 +19,13 @@ public final class Gui implements InventoryHolder, Listener {
     private static final ItemStack NONE_ITEM = new ItemStack(Material.AIR);
     private static final ItemStack ADD_ITEM = new ItemStack(Material.ALLIUM);
     private static final ItemStack REARRANGE_ITEM = new ItemStack(Material.ITEM_FRAME);
+    private static final char[] CONTENT_TEMPLATE = {
+        'b','b','b','b','b','b','b','b','c',
+        'n','n','n','n','n','n','n','n','n',
+        'n','n','n','n','n','n','n','n','n',
+        'n','n','n','n','n','n','n','n','n',
+        'b','b','b','b','a','b','s','b','b'
+    };
 
     private static final int INVENTORY_SIZE = 9 * 5;
     private static final int PAGE_ITEM_OFFSET = 9;
@@ -53,28 +60,27 @@ public final class Gui implements InventoryHolder, Listener {
 
         LinkedList<ItemStack> content = new LinkedList<ItemStack>();
 
-        for (int i = 0; i < 8; i++) {
-            content.push(BORDER_ITEM);
+        for (char c : CONTENT_TEMPLATE) {
+            switch (c) {
+                case 'b':
+                    content.push(BORDER_ITEM);
+                    continue;
+                case 'n':
+                    content.push(NONE_ITEM);
+                    continue;
+                case 'c':
+                    content.push(CLOSE_ITEM);
+                    continue;
+                case 'a':
+                    content.push(ADD_ITEM);
+                    continue;
+                case 's':
+                    content.push(REARRANGE_ITEM);
+                    continue;
+                default:
+                    logger.severe("Unkown template item " + c);
+            }
         }
-
-        content.push(CLOSE_ITEM);
-
-        for (int i = 0; i < 27; i++) {
-            content.push(NONE_ITEM);
-        }
-
-        for (int i = 0; i < 4; i++) {
-            content.push(BORDER_ITEM);
-        }
-
-        content.push(ADD_ITEM);
-
-        content.push(BORDER_ITEM);
-
-        content.push(REARRANGE_ITEM);
-
-        content.push(BORDER_ITEM);
-        content.push(BORDER_ITEM);
 
         return content.toArray(new ItemStack[content.size()]);
     }
